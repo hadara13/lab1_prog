@@ -53,7 +53,8 @@ using namespace std;
 #include <iostream>
 
 int main()
-{
+
+{       cout << " this lab was done in the class " << endl;
         cout << "this change is from pr_test " <<endl;
     /**
      * Задание 1. Классы. Объявление класса, создание экземпляров класса. Явные
