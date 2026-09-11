@@ -1,0 +1,48 @@
+#task 3.1
+#debug.out:
+	#g++ -g -o debug.out lab1.cpp rect.cpp barrel.cpp matrix.cpp mystring.cpp 
+
+#task 3.2
+#debug: debug.out
+	#gdb debug.out
+
+#clean:
+	#rm -f debug.out
+
+
+#task 3.3 
+#build/debug.out : src/lab1.cpp src/rect.cpp src/barrel.cpp src/matrix.cpp src/mystring.cpp
+	#mkdir -p build
+	#g++ -g -o build/debug.out src/lab1.cpp src/rect.cpp src/barrel.cpp src/matrix.cpp src/mystring.cpp
+
+#debug: build/debug.out
+	#gdb build/debug.out
+
+#task 3.4
+build/lab1.o : src/lab1.cpp 
+	mkdir -p build
+	g++ -g -c -o build/lab1.o src/lab1.cpp
+
+build/rect.o : src/rect.cpp src/rect.h
+	mkdir -p build
+	g++ -g -c -o build/rect.o src/rect.cpp
+
+build/matrix.o : src/matrix.cpp src/matrix.h
+	mkdir -p build
+	g++ -g -c -o build/matrix.o src/matrix.cpp
+
+build/mystring.o : src/mystring.cpp src/mystring.h
+	mkdir -p build
+	g++ -g -c -o build/mystring.o src/mystring.cpp
+
+ build/barrel.o : src/barrel.cpp src/barrel.h
+	mkdir -p build
+	g++ -g -c -o build/barrel.o src/barrel.cpp
+
+
+build/debug.out: build/rect.o build/mystring.o build/barrel.o src/lab1.cpp build/matrix.o
+	mkdir -p build
+	g++ -g -o build/debug.out src/lab1.cpp build/rect.o build/mystring.o build/barrel.o build/matrix.o
+
+clean:
+	rm -rf build
